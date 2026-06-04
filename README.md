@@ -1,200 +1,276 @@
 # 🏁 Pitline
 
-**Pitline** is a motorsport telemetry analytics platform designed for sim racers — inspired by fitness tracking platforms like Strava, but built for racing performance analysis.
+### Motorsport Telemetry Analytics Platform for Sim Racers
 
-It helps drivers upload telemetry data, analyze laps, compare performance, and understand where time is gained or lost on track.
+Transform raw racing telemetry into actionable performance insights.
 
----
-
-# 🚀 Project Vision
-
-Pitline turns raw racing telemetry into actionable insights.
-
-Instead of guessing why a lap was slow, users can:
-
-* Compare laps side-by-side
-* Visualize racing lines
-* Analyze speed, braking, and throttle behavior
-* Identify performance bottlenecks
-
-The goal is simple:
-
-> Help sim racers improve using data, not intuition.
+Pitline helps sim racers upload telemetry data, compare laps, visualize driver inputs, and understand where valuable time is gained or lost on track.
 
 ---
 
-# 🎯 MVP Features
-
-The current version focuses on a minimal but functional analytics pipeline:
+## 📸 Screenshots
 
 ### 📤 Telemetry Upload
 
-* Upload CSV telemetry files from sim racing games
-* Parse raw data into a standardized format
+![Telemetry Upload](public/screenshots/upload-page.png)
 
-### 📊 Lap Visualization
+Upload telemetry CSV files and instantly process racing data.
 
-* View speed over time graphs
-* Analyze throttle and brake inputs
-* Inspect gear and RPM changes
+---
+
+### 📊 Telemetry Dashboard
+
+![Telemetry Dashboard](public/screenshots/telemetry-dashboard.png.png)
+
+Analyze speed traces, throttle application, braking zones, gear changes, and RPM behavior.
+
+---
 
 ### ⚖️ Lap Comparison
 
-* Compare two laps side-by-side
-* Calculate delta (time/speed differences)
-* Highlight performance gaps
+![Lap Comparison](public/screenshots/comparision.png)
 
-### 🧠 Basic Insights Engine
-
-* Rule-based analysis of braking and acceleration points
-* Identify inconsistencies between laps
+Compare multiple laps side-by-side and identify performance differences.
 
 ---
 
-# 🧱 Core Concept
+### 🧠 Driver Insights
 
-All telemetry is normalized into a single internal format:
+![Driver Insights](public/screenshots/comparision1.png)
+
+Generate telemetry-based insights to improve consistency and lap times.
+pitline-data.vercel.app
+
+---
+
+## 🚀 Project Vision
+
+Pitline turns raw motorsport telemetry into meaningful performance analysis.
+
+Instead of guessing why a lap was slower, drivers can use data to identify weaknesses, compare performance, and make informed improvements.
+
+### Key Benefits
+
+* 📈 Visualize telemetry data instantly
+* ⚖️ Compare laps side-by-side
+* 🧠 Generate automated driving insights
+* 🏁 Identify performance bottlenecks
+* 📊 Understand speed, throttle, and braking behavior
+
+---
+
+## 🎯 MVP Features
+
+### 📤 Telemetry Upload
+
+* Upload CSV telemetry files
+* Parse racing telemetry data
+* Standardize data into a common format
+
+### 📊 Telemetry Visualization
+
+Analyze:
+
+* Speed traces
+* Throttle input
+* Brake input
+* Gear changes
+* RPM behavior
+
+### ⚖️ Lap Comparison
+
+* Compare multiple laps
+* Calculate performance deltas
+* Highlight speed differences
+* Identify braking and acceleration variations
+
+### 🧠 Insights Engine
+
+Rule-based analysis to identify:
+
+* Early braking
+* Late braking
+* Throttle hesitation
+* Inconsistent driving behavior
+* Corner exit performance issues
+
+---
+
+## 🧱 Core Data Model
+
+All telemetry is normalized into a single structure:
 
 ```ts
-TelemetryPoint {
-  time: number
-  x: number
-  y: number
-  speed: number
-  throttle: number
-  brake: number
-  gear: number
-  rpm: number
+interface TelemetryPoint {
+  time: number;
+  x: number;
+  y: number;
+  speed: number;
+  throttle: number;
+  brake: number;
+  gear: number;
+  rpm: number;
 }
 ```
 
-This ensures compatibility across different sim racing games.
+This enables compatibility across multiple racing simulators.
 
 ---
 
-# 🏗️ Architecture
+## 🏗️ Architecture
 
-Pitline follows a simple data pipeline architecture:
-
-```
+```text
 CSV Upload
-   ↓
+      │
+      ▼
 Parser Layer
-   ↓
+      │
+      ▼
 Normalization
-   ↓
+      │
+      ▼
 Lap Splitter
-   ↓
+      │
+      ▼
 Analytics Engine
-   ↓
+      │
+      ▼
+Insights Generator
+      │
+      ▼
 UI Visualization
 ```
 
-The system is designed to be lightweight, fast, and easy to extend.
+Pitline follows a lightweight analytics pipeline architecture designed for performance and extensibility.
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-* **Frontend:** Next.js (App Router), TypeScript
-* **Styling:** Tailwind CSS, shadcn/ui
-* **Charts:** Recharts
-* **Backend:** Next.js API Routes
-* **Storage:** In-memory (MVP stage)
+### Frontend
 
-Future versions may introduce PostgreSQL and object storage.
+* Next.js (App Router)
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+
+### Data Visualization
+
+* Recharts
+
+### Backend
+
+* Next.js API Routes
+
+### Storage
+
+* In-Memory Storage (MVP)
+
+Future versions may introduce PostgreSQL and cloud object storage.
 
 ---
 
-# 📁 Project Structure
+## 📈 Example Workflow
 
+1. Upload telemetry CSV
+2. Parse and normalize telemetry data
+3. Split telemetry into laps
+4. Select two laps for comparison
+5. Analyze speed and driver inputs
+6. Generate performance insights
+
+Example insights:
+
+> You are braking too early in Turn 3.
+
+> Better throttle application on the exit of Turn 5.
+
+> Sector 2 is 0.31 seconds slower than your reference lap.
+
+---
+
+## 🧠 Technical Challenges
+
+* Telemetry normalization across simulators
+* Lap segmentation and alignment
+* Delta calculation between laps
+* Interactive telemetry visualization
+* Turning raw telemetry into actionable insights
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/
+│   ├── upload/
+│   ├── dashboard/
+│   └── analysis/
+│
+├── components/
+│
+├── lib/
+│   ├── telemetry/
+│   ├── analytics/
+│   └── visualization/
+│
+└── types/
 ```
-/app              → UI pages (dashboard, upload, analysis)
-/components       → Reusable UI components
-/lib
-  /telemetry      → Parsing + normalization logic
-  /analytics      → Delta + performance calculations
-  /visualization  → Graph + racing line rendering
-/types            → TypeScript definitions
-```
 
 ---
 
-# 📈 Example Use Case
-
-1. Upload a telemetry CSV from a sim race
-2. System parses and splits laps
-3. Select Lap A and Lap B
-4. View:
-
-   * Speed graph comparison
-   * Brake/throttle differences
-   * Time delta per section
-5. Get insights like:
-
-   * "You are braking too early in Turn 3"
-   * "Better throttle application in exit of Turn 5"
-
----
-
-# 🧠 Key Technical Challenges
-
-* Normalizing telemetry from different simulators
-* Splitting laps from continuous data streams
-* Aligning laps with different lengths
-* Rendering smooth racing line visualizations
-* Turning raw data into meaningful insights
-
----
-
-# 🛣️ Roadmap
+## 🛣️ Roadmap
 
 ### Phase 1 — MVP
 
-* Upload telemetry
-* Parse CSV
-* View lap graphs
-* Compare laps
+* ✅ CSV Upload
+* ✅ Telemetry Parsing
+* ✅ Lap Visualization
+* ✅ Lap Comparison
 
 ### Phase 2 — Expansion
 
-* Racing line visualization
-* Session history
-* Basic leaderboard system
+* Racing Line Visualization
+* Session History
+* Sector Analysis
+* Leaderboards
 
 ### Phase 3 — Advanced Analytics
 
-* AI coaching insights
-* Sector analysis
-* Setup vs performance correlation
+* AI Coaching Insights
+* Setup vs Performance Correlation
+* Predictive Lap Analysis
+* Driver Performance Tracking
 
 ---
 
-# 📌 Status
+## 📌 Status
 
-🚧 Early-stage MVP in active development
+🚧 Early-stage MVP in active development.
 
-Focus:
+Current focus:
 
-> Build a working telemetry analysis pipeline first, then expand features.
-
----
-
-# 👨‍💻 Author
-
-Built by Pranav Swaroop
-Second-year Computer Science student
-Focused on AI systems, automation, and data-driven applications
+> Build a reliable telemetry analysis pipeline before expanding into advanced racing analytics.
 
 ---
 
-# ⭐ Goal
+## 👨‍💻 Author
 
-To build a portfolio-grade system that demonstrates:
+**Pranav Swaroop**
 
-* Full-stack engineering
-* Data pipeline design
-* Visualization systems
-* Domain-specific analytics
+Computer Science Student • Full-Stack Developer • AI & Data Systems Enthusiast
 
 ---
+
+## ⭐ Project Goal
+
+Pitline was built to demonstrate:
+
+* Full-Stack Engineering
+* Data Pipeline Design
+* Analytics Systems Development
+* Interactive Visualization
+* Domain-Specific Software Architecture
+
+A portfolio-grade project focused on motorsport telemetry analysis and performance engineering.
