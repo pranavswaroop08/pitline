@@ -6,7 +6,7 @@ export default function Home() {
       <header className="border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
           <div>
-            <h1 align="center" weight="bold" size="xl" className="text-xl font-bold tracking-tight text-white">Pitline</h1>
+            <h1 align="center" weight="bold" size="xl" className="text-xl font-bold tracking-tight text-white">Lap Lens</h1>
             <p className="text-xs text-zinc-500">Sim racing telemetry</p>
           </div>
         </div>
